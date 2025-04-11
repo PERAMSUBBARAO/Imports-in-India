@@ -1,0 +1,415 @@
+/* categories.css - for categories_detail.php */
+
+body {
+    padding-top: 20px; /* Same as navbar height */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('../images/categories/img1.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start */
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #FF9933, #ffffff, #138808);
+    padding: 15px 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    color: #000;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Center text styling */
+.navbar div {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom effect for center text */
+.navbar div:hover {
+    transform: scale(1.1);
+}
+
+/* Underline animation for center text */
+.navbar div::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: blue;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.navbar div:hover::after {
+    transform: scaleX(1);
+}
+
+/* Back link styling */
+.navbar .back-link {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom effect for back link */
+.navbar .back-link:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Underline animation for back link */
+.navbar .back-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 30px;
+    width: calc(100% - 60px);
+    height: 2px;
+    background-color: blue;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navbar .back-link:hover::after {
+    transform: scaleX(1);
+}
+
+.category-container {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Evenly spaced cards */
+    gap: 20px; /* Small gap between cards */
+    width: 100%;
+    max-width: 100%; /* Ensures full width usage */
+    padding: 10px;
+}
+
+.card {
+    width: 350px; /* Adjusted width for a more compact look */
+    height: 400px; /* Height of the cards */
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Alternating Colors for Shadow & Semi-circle */
+.card:nth-child(3n+1) {
+    box-shadow: 0 8px 16px rgba(255, 153, 0, 0.6); /* Saffron */
+}
+.card:nth-child(3n+1) .semi-circle {
+    background: rgba(255, 153, 0, 0.6);
+}
+
+.card:nth-child(3n+2) {
+    box-shadow: 0 8px 16px rgba(0, 0, 128, 0.6); /* Blue */
+}
+.card:nth-child(3n+2) .semi-circle {
+    background: rgba(0, 0, 128, 0.6);
+}
+
+.card:nth-child(3n+3) {
+    box-shadow: 0 8px 16px rgba(19, 136, 8, 0.6); /* Green */
+}
+.card:nth-child(3n+3) .semi-circle {
+    background: rgba(19, 136, 8, 0.6);
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.semi-circle {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 80px 80px 0 0;
+    opacity: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.card:hover .semi-circle {
+    bottom: 0;
+    opacity: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 250px;  /* Smaller card width for mobile */
+        height: 350px; /* Adjust card height for mobile */
+    }
+}
+
+/* NEW STYLES FOR CATEGORY DETAILS */
+
+/* Category details container */
+.category-details {
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.category-details h1 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, #FF9933, #ffffff, #138808) 1;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.category-details p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Category statistics */
+.category-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+/* Apply Indian flag colors to stat items */
+.stat-item:nth-child(3n+1) {
+    border-left: 4px solid #FF9933; /* Saffron */
+}
+
+.stat-item:nth-child(3n+2) {
+    border-left: 4px solid #000080; /* Navy Blue */
+}
+
+.stat-item:nth-child(3n+3) {
+    border-left: 4px solid #138808; /* Green */
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.stat-item h3 {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Alternate colors for stat item values */
+.stat-item:nth-child(3n+1) p {
+    color: #FF9933; /* Saffron */
+}
+
+.stat-item:nth-child(3n+2) p {
+    color: #000080; /* Navy Blue */
+}
+
+.stat-item:nth-child(3n+3) p {
+    color: #138808; /* Green */
+}
+
+/* State sections */
+.state-section {
+    background-color: white;
+    border-radius: 12px;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Add tricolor accent to state sections */
+.state-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #FF9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #138808 66.66%);
+}
+
+.state-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.state-section h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Import items display */
+.import-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.import-item {
+    background-color: #f8f9ff;
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Import items with Indian flag colors */
+.import-item:nth-child(3n+1) {
+    border-left: 4px solid #FF9933; /* Saffron */
+}
+
+.import-item:nth-child(3n+2) {
+    border-left: 4px solid #000080; /* Navy Blue */
+}
+
+.import-item:nth-child(3n+3) {
+    border-left: 4px solid #138808; /* Green */
+}
+
+.import-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.import-item h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.import-item p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+/* Section headings */
+h2 {
+    font-size: 1.8rem;
+    color: #000;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #FF9933, #ffffff, #138808) 1;
+    text-align: center;
+}
+
+/* Responsive design for details page */
+@media (max-width: 768px) {
+    .category-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .import-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-details h1 {
+        font-size: 2rem;
+    }
+    
+    .category-details {
+        padding: 1rem;
+        margin-top: 70px;
+    }
+}
